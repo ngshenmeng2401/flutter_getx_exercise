@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_exercise1/controller/cartController.dart';
-import 'package:flutter_getx_exercise1/controller/shopping.controller.dart';
+import 'package:flutter_getx_exercise1/controller/cart_controller.dart';
+import 'package:flutter_getx_exercise1/controller/shopping_controller.dart';
 import 'package:get/get.dart';
 
 class ShoppingPage extends StatelessWidget {
@@ -14,12 +14,13 @@ class ShoppingPage extends StatelessWidget {
         title: Text("Shopping Page"),
       ),
       body: SafeArea(
-          child: Column(
+        child: Column(
         children: [
-          Expanded(child: GetX<ShoppingController>(
+          Expanded(
+            child: GetX<ShoppingController>(
             builder: (controller) {
               return ListView.builder(
-                  itemCount: controller.products.length,
+                  itemCount: controller.productsList.length,
                   itemBuilder: (context, index) {
                     return Card(
                         margin: const EdgeInsets.fromLTRB(8, 10, 8, 5),
@@ -37,11 +38,11 @@ class ShoppingPage extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          controller.products[index].name,
+                                          controller.productsList[index].name,
                                           style: TextStyle(fontSize: 22),
                                         ),
                                         Text(controller
-                                            .products[index].description)
+                                            .productsList[index].description)
                                       ],
                                     ),
                                     RichText(
@@ -54,7 +55,7 @@ class ShoppingPage extends StatelessWidget {
                                           ),
                                           TextSpan(
                                               text: controller
-                                                  .products[index].price
+                                                  .productsList[index].price
                                                   .toString(),
                                               style: TextStyle(fontSize: 24)),
                                         ])),
@@ -66,12 +67,13 @@ class ShoppingPage extends StatelessWidget {
                                   textColor: Colors.white,
                                   onPressed: () {
                                     cartController
-                                        .addToCart(controller.products[index]);
+                                        .addToCart(controller.productsList[index]);
                                   },
                                   child: Text("Add to cart"),
                                 )
                               ],
-                            )));
+                            ))
+                    );
                   });
             },
           )),

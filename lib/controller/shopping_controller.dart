@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class ShoppingController extends GetxController{
 
-  var products = <Product>[].obs;
+  var productsList = <Product>[].obs;
 
   @override
   void onInit() {
@@ -47,6 +47,6 @@ class ShoppingController extends GetxController{
 
     ];
 
-    products.value = productResult;
+    productsList.value = productResult;
   }
 }
