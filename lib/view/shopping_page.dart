@@ -4,6 +4,7 @@ import 'package:flutter_getx_exercise1/controller/shopping_controller.dart';
 import 'package:get/get.dart';
 
 class ShoppingPage extends StatelessWidget {
+
   final shoppingController = Get.put(ShoppingController());
   final cartController = Get.put(CartController());
 
@@ -12,6 +13,19 @@ class ShoppingPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Shopping Page"),
+        actions: [
+          IconButton(
+            onPressed: (){
+              Get.changeTheme(Get.isDarkMode 
+                ? ThemeData.light() 
+                : ThemeData.dark());
+              Get.snackbar("Change Mode", 
+              Get.isDarkMode 
+              ? "Light Theme"
+              : "Dark Theme");
+            }, 
+            icon: Icon(Icons.brightness_6)),
+        ],
       ),
       body: SafeArea(
         child: Column(
@@ -38,11 +52,10 @@ class ShoppingPage extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          controller.productsList[index].name,
+                                          'productname'.tr + " " + controller.productsList[index].name,
                                           style: TextStyle(fontSize: 22),
                                         ),
-                                        Text(controller
-                                            .productsList[index].description)
+                                        Text('desc1'.tr + " " + controller.productsList[index].name + " " + 'desc2'.tr)
                                       ],
                                     ),
                                     RichText(
@@ -85,7 +98,32 @@ class ShoppingPage extends StatelessWidget {
               );
             },
           ),
-          SizedBox(height: 60),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MaterialButton(
+                height: 30,
+                color: Colors.blue,
+                child: Text("华语",
+                  style:TextStyle(color: Colors.white)),
+                onPressed:(){
+                  var locale = Locale('zh', 'Hans');
+                  Get.updateLocale(locale);
+                },
+              ),
+              SizedBox(width: 10),
+              MaterialButton(
+                height: 30,
+                color: Colors.blue,
+                child: Text("Eng",
+                  style:TextStyle(color: Colors.white)),
+                onPressed:(){
+                  var locale = Locale('en', 'US');
+                  Get.updateLocale(locale);
+                })
+            ],
+          )
         ],
       )),
       floatingActionButton: FloatingActionButton.extended(

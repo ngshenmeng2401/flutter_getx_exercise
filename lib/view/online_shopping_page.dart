@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_exercise1/controller/cart_controller.dart';
 import 'package:flutter_getx_exercise1/controller/online_shopping_controller.dart';
@@ -25,18 +24,42 @@ class OnlineShoppingPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Padding(
-              padding:const EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: StaggeredGridView.countBuilder(
-                crossAxisCount: 2, 
-                itemCount: onlineShoppingController.productList.length,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                itemBuilder: (context,index){
-                  return OnlineProductTile(onlineShoppingController.productList[index]);
-                }, 
-              staggeredTileBuilder: (index)=>StaggeredTile.fit(1)),
-            ),
+            child: Obx((){
+              if(onlineShoppingController.isLoading.value){
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                      Text(
+                        onlineShoppingController.statusMsj.toString(),
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ],
+                  ),
+                );
+              }else if(onlineShoppingController.productList == null){
+                return Center(
+                  child: Text(
+                    onlineShoppingController.statusMsj.toString(),
+                    style: TextStyle(fontSize: 20),
+                ));
+
+              }else{
+                return Padding(
+                  padding:const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  child: StaggeredGridView.countBuilder(
+                    crossAxisCount: 2, 
+                    itemCount: onlineShoppingController.productList.length,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    itemBuilder: (context,index){
+                      return OnlineProductTile(onlineShoppingController.productList[index]);
+                    }, 
+                  staggeredTileBuilder: (index)=>StaggeredTile.fit(1)),
+                );
+              }
+            })
 
             // child:ListView.builder(
             //   itemCount: 2,

@@ -19,28 +19,28 @@ class ShoppingController extends GetxController{
 
       Product(
         id: 1, 
-        name: "Product 1", 
+        name: "1", 
         img: "image", 
         description: "This is product 1 description", 
         price: 30),
 
       Product(
         id: 2, 
-        name: "Product 2", 
+        name: "2", 
         img: "image", 
         description: "This is product 2 description", 
         price: 45),
 
       Product(
         id: 3, 
-        name: "Product 3", 
+        name: "3", 
         img: "image", 
         description: "This is product 3 description", 
         price: 50),
 
       Product(
         id: 4, 
-        name: "Product 4", 
+        name: "4", 
         img: "image", 
         description: "This is product 4 description", 
         price: 25),

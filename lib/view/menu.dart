@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'online_shopping_page.dart';
+import 'shopping_page.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({ Key? key }) : super(key: key);
@@ -12,16 +16,26 @@ class MenuPage extends StatelessWidget {
       ),
       body:Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MaterialButton(
               minWidth: 70,
               color: Colors.blue,
               textColor: Colors.white,
               onPressed: () {
-                
+                Get.to(ShoppingPage());
               },
-              child: Text("Add to cart"),
+              child: Text("Shopping"),
+            ),
+            SizedBox(height: 50,),
+            MaterialButton(
+              minWidth: 70,
+              color: Colors.blue,
+              textColor: Colors.white,
+              onPressed: () {
+                Get.to(OnlineShoppingPage());
+              },
+              child: Text("Online Shopping"),
             )
           ],
         ),
