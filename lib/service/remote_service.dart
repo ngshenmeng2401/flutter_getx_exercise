@@ -12,7 +12,7 @@ class RemoteService {
     var response =
         await client.get(
           Uri.parse(
-            "https://javathree99.com/s271059/littlecakestory/php/load_other_product.php"));
+            "https://javathree99.com/s271059/getx_exercise/php/load_product.php"));
     if (response.statusCode == 200) {
       if (response.body == "nodata") {
         return null;

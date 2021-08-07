@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'lang/translation_service.dart';
+import 'middleware/login_auth.dart';
+import 'route/app_page.dart';
 import 'view/menu.dart';
 import 'view/online_shopping_page.dart';
 import 'view/shopping_page.dart';
@@ -16,20 +18,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: "/menu",
       unknownRoute: GetPage(name: "/notfound", page: ()=> UnknownRoutePage()),
-      getPages: [
-        GetPage(
-          name: "/menu", 
-          page: () => MenuPage()),
-        GetPage(
-          name: "/shopping", 
-          page:() => ShoppingPage()),
-        GetPage(
-          name: "/onlineshopping", 
-          page: () => OnlineShoppingPage()),
-      ],
+      getPages: AppPages.routes,
       locale: TranslationService.locale,
       fallbackLocale: TranslationService.fallbackLocale,
       translations: TranslationService(),
+      
       // home: MenuPage(),
     );
   }

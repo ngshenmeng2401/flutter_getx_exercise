@@ -1,15 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_exercise1/controller/cart_controller.dart';
-import 'package:flutter_getx_exercise1/controller/online_shopping_controller.dart';
-import 'package:flutter_getx_exercise1/model/online_product.dart';
-import 'package:get/get.dart';
 
-class OnlineProductTile extends StatelessWidget {
-  final OnlineProduct online_product;
-  OnlineProductTile(this.online_product);
-  final onlineProductController = Get.put(OnlineShoppingController());
-  final cartController = Get.put(CartController());
+class OnlineProductTile2 extends StatelessWidget {
+
+  final OnlineProductTile2 onlineProduct2;
+  OnlineProductTile2(this.onlineProduct2);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +34,7 @@ class OnlineProductTile extends StatelessWidget {
                   ),
                   child: CachedNetworkImage(
                       imageUrl:
-                          "https://javathree99.com/s271059/littlecakestory/images/product/${online_product.productNo}.png",
+                          "https://javathree99.com/s271059/littlecakestory/images/product/${onlineProduct2.onlineProduct2}.png",
                       height: 185,
                       width: 185,
                       placeholder: (context, url) => new Transform.scale(
@@ -52,19 +47,6 @@ class OnlineProductTile extends StatelessWidget {
                             size: screenWidth / 3,
                           )),
                 ),
-                Positioned(
-                  right: 0,
-                  child: Obx(() => CircleAvatar(
-                    backgroundColor: Colors.white70,
-                    child: IconButton(
-                      icon: online_product.isFavorite.value
-                          ? Icon(Icons.favorite_rounded)
-                          : Icon(Icons.favorite_border),
-                      onPressed: () {
-                        online_product.isFavorite.toggle();
-                      },
-                    ),
-                  )))
               ]),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -75,7 +57,7 @@ class OnlineProductTile extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(2, 0, 0, 0),
                       // color: Colors.amberAccent,
                       child: Text(
-                        online_product.productName.toString(),
+                        onlineProduct2.onlineProduct2.toString(),
                         style: TextStyle(fontSize: 16),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -87,7 +69,7 @@ class OnlineProductTile extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(0, 0, 2, 0),
                       // color: Colors.amber,
                       child: Text(
-                        "RM " + online_product.originalPrice.toString(),
+                        "RM " ,
                         style: TextStyle(fontSize: 16),
                         textAlign: TextAlign.right,
                         overflow: TextOverflow.ellipsis,
@@ -103,7 +85,7 @@ class OnlineProductTile extends StatelessWidget {
                     children: [
                       Padding(
                           padding: const EdgeInsets.fromLTRB(2, 0, 0, 0),
-                          child: Text(online_product.rating.toString())),
+                          child: Text("")),
                       Icon(
                         Icons.star_rate,
                         size: 18,
@@ -120,7 +102,7 @@ class OnlineProductTile extends StatelessWidget {
                       color: Colors.blue,
                       textColor: Colors.white,
                       onPressed: () {
-                        cartController.addToOnlineCart(online_product);
+                        // cartController.addToOnlineCart(online_product);
                       },
                       child: Text("Add to cart"),
                     ),
