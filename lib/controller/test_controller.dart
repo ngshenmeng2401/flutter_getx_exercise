@@ -3,9 +3,10 @@ import 'package:get/get.dart';
 
 class TestController extends GetxController{
 
-  var selectGender ;
-  final List<String> gender = ["Male","Female"];
+  var selectColor ;
+  final List<String> color = ["Blue","Green","Yellow","Red"];
   var rememberMe = false ;
+  var isDarkMode = false ;
 
   var selectRadioButton ;
 
@@ -21,6 +22,14 @@ class TestController extends GetxController{
     // print(value);
     rememberMe = value;
     print(rememberMe);
+    update();
+  }
+
+  void onClickSwitchButton(value) {
+
+    // print(value);
+    isDarkMode = value;
+    print(isDarkMode);
     update();
   }
 }
