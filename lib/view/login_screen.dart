@@ -130,7 +130,7 @@ class LoginScreen extends GetView<LoginPageFunctionController> {
                     child: Text("Login",
                         style: TextStyle(color: Colors.white, fontSize: 18)),
                     onPressed: () {
-                      controller.checkLogin();
+                      controller.checkLogin(controller.emailController.text.toString(),controller.passwordController.text.toString());
                     }),
                 SizedBox(height: 10),
                 Row(

@@ -4,11 +4,13 @@ import 'package:flutter_getx_exercise1/controller/online_shopping_controller.dar
 import 'package:flutter_getx_exercise1/view/online_product_tile.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class OnlineShoppingPage extends StatelessWidget {
   
   final onlineShoppingController = Get.put(OnlineShoppingController());
   final cartController = Get.put(CartController());
+  final userData = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,13 @@ class OnlineShoppingPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
+            flex: 1,
+            child: Text("Email " + userData.read("email"),
+              style: TextStyle(
+                fontSize:20)),
+          ),
+          Expanded(
+            flex: 9,
             child: Obx((){
               if(onlineShoppingController.isLoading.value){
                 return Center(

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_exercise1/view/online_shopping_page.dart';
 import 'package:get/get.dart';
-import 'login_screen.dart';
-import 'online_shopping_page.dart';
+import 'package:get_storage/get_storage.dart';
 import 'shopping_page.dart';
 
 class MenuPage extends StatelessWidget {
-  const MenuPage({ Key? key }) : super(key: key);
+
+  final userData = GetStorage();
 
   @override
   Widget build(BuildContext context) {
+
+    userData.writeIfNull('isLogged', false);
+
     return Scaffold(
 
       appBar: AppBar(
@@ -29,7 +33,8 @@ class MenuPage extends StatelessWidget {
               title: Text("Online Shopping 1"),
               subtitle: Text("With API and HTTP method"),
               onTap: (){
-                Get.toNamed("/onlineshopping");
+                // Get.toNamed("/onlineshopping");
+                Get.to(OnlineShoppingPage());
               },
             ),
             ListTile(
@@ -53,35 +58,22 @@ class MenuPage extends StatelessWidget {
                 Get.toNamed("/test");
               },
             ),
-            // MaterialButton(
-            //   minWidth: 70,
-            //   color: Colors.blue,
-            //   textColor: Colors.white,
-            //   onPressed: () {
-            //     Get.to(ShoppingPage());
-            //   },
-            //   child: Text("Shopping"),
-            // ),
-            // SizedBox(height: 30,),
-            // MaterialButton(
-            //   minWidth: 70,
-            //   color: Colors.blue,
-            //   textColor: Colors.white,
-            //   onPressed: () {
-            //     Get.toNamed("/onlineshopping");
-            //   },
-            //   child: Text("Online Shopping"),
-            // ),
-            // SizedBox(height: 30,),
-            // MaterialButton(
-            //   minWidth: 70,
-            //   color: Colors.blue,
-            //   textColor: Colors.white,
-            //   onPressed: () {
-            //     Get.to(LoginScreen());
-            //   },
-            //   child: Text("Login"),
-            // )
+            ListTile(
+              title: Text("Get Storage"),
+              subtitle: Text("Keep User Login"),
+              onTap: (){
+                userData.read('isLogged') == false
+                ? Get.toNamed("/onlineshopping")
+                : Get.toNamed("/login");
+              },
+            ),
+            ListTile(
+              title: Text("Image Picker & Cropper"),
+              subtitle: Text("From Camera & Gallery"),
+              onTap: (){
+                Get.toNamed("/imagepicker");
+              },
+            ),
           ],
         ),
       )

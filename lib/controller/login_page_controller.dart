@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_exercise1/view/online_shopping_page.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPageFunctionController extends GetxController {
@@ -7,6 +9,7 @@ class LoginPageFunctionController extends GetxController {
   final GlobalKey <FormState> loginFormKey = GlobalKey<FormState>();
 
   late TextEditingController emailController, passwordController;
+  final userData = GetStorage(); 
 
   var email = '';
   var password = '';
@@ -52,12 +55,26 @@ class LoginPageFunctionController extends GetxController {
     return null;
   }
 
-  void checkLogin() {
-    final isValid = loginFormKey.currentState!.validate();
-    if (!isValid) {
-      return;
+  void checkLogin(email, password) {
+    // final isValid = loginFormKey.currentState!.validate();
+    // if (!isValid) {
+    //   return;
+    // }
+    // loginFormKey.currentState!.save();
+
+    if(email != "" && password != ""){
+      print("Sucessful");
+
+      userData.write("isLogged", true);
+      userData.write("email", email);
+
+      Get.to(OnlineShoppingPage());
+
+    }else {
+
+      Get.snackbar("Error", "Please enter your email and password !!!");
     }
-    loginFormKey.currentState!.save();
+
   }
 
   void rememberEmailPassword (value, email, password){
@@ -88,12 +105,18 @@ class LoginPageFunctionController extends GetxController {
   }
 
   Future<void> storePreference(bool value,String email, String password) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+    
+    // SharedPreferences preferences = await SharedPreferences.getInstance();
 
     if(value==true){
-      await preferences.setString("email", email);
-      await preferences.setString("password", password);
-      await preferences.setBool("rememberme", value);
+      // await preferences.setString("email", email);
+      // await preferences.setString("password", password);
+      // await preferences.setBool("rememberme", value);
+
+      userData.write("email", email);
+      userData.write("password", password);
+      userData.write("rememberme", value);
+
       Get.bottomSheet(
         Container(
           height: 50,
@@ -110,9 +133,14 @@ class LoginPageFunctionController extends GetxController {
       );
     return;
     }else{  
-      await preferences.setString("email", '');
-      await preferences.setString("password", '');
-      await preferences.setBool("rememberme", value);
+      // await preferences.setString("email", '');
+      // await preferences.setString("password", '');
+      // await preferences.setBool("rememberme", value);
+
+      userData.write("email", '');
+      userData.write("password", '');
+      userData.write("rememberme", value);
+
       Get.bottomSheet(
         Container(
           height: 50,
@@ -137,11 +165,15 @@ class LoginPageFunctionController extends GetxController {
 
   Future<void> loadPreference()async {
 
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+    // SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    String email = preferences.getString("email")??'';
-    String password = preferences.getString("password")??'';
-    rememberMe= (preferences.getBool("rememberme")??false);
+    // String email = preferences.getString("email")??'';
+    // String password = preferences.getString("password")??'';
+    // rememberMe= (preferences.getBool("rememberme")??false);
+
+    String email = userData.read("email")??'';
+    String password = userData.read("password")??'';
+    rememberMe= (userData.read("rememberme")??false);
 
     emailController.text=email;
     passwordController.text=password;
