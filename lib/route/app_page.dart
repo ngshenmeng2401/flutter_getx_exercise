@@ -8,7 +8,7 @@ import 'package:flutter_getx_exercise1/view/login_screen.dart';
 import 'package:flutter_getx_exercise1/view/menu.dart';
 import 'package:flutter_getx_exercise1/view/online_shopping_page.dart';
 import 'package:flutter_getx_exercise1/view/shopping_page.dart';
-import 'package:flutter_getx_exercise1/view/test_page.dart';
+import 'package:flutter_getx_exercise1/view/button_page.dart';
 import 'package:flutter_getx_exercise1/view/unknown_page.dart';
 import 'package:get/get.dart';
 
@@ -36,8 +36,8 @@ class AppPages{
       page:() => ShoppingPage()),
 
     GetPage(
-      name: "/test", 
-      page:() => TestPage()),
+      name: "/button", 
+      page:() => ButtonPage()),
 
     GetPage(
       name: "/onlineshopping", 

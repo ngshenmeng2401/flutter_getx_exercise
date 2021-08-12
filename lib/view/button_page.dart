@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_exercise1/controller/test_controller.dart';
+import 'package:flutter_getx_exercise1/controller/button_controller.dart';
 import 'package:get/get.dart';
 
-class TestPage extends GetView<TestController> {
+class ButtonPage extends GetView<TestController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

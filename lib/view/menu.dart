@@ -52,10 +52,10 @@ class MenuPage extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text("Test Page"),
+              title: Text("Button Page"),
               subtitle: Text("Test buttons"),
               onTap: (){
-                Get.toNamed("/test");
+                Get.toNamed("/button");
               },
             ),
             ListTile(
